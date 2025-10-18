@@ -613,6 +613,27 @@ body.deathly {
 #enableSoundBtn {
   transition: all 0.4s ease;
 }
+/* === Button Fix for Intro Screen === */
+#intro button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: auto;
+  min-height: 60px; /* ensures enough vertical space */
+  line-height: 1.2;
+  padding: 16px 32px;
+  white-space: nowrap;
+  overflow: visible;
+  text-align: center;
+}
+
+#intro {
+  text-align: center;
+}
+
+#intro .btn {
+  max-width: 90%;
+}
 
 
   </style>
@@ -995,4 +1016,5 @@ enableSoundBtn.addEventListener('click', () => {
 
   </script>
 </body>
+
 </html>
