@@ -1,0 +1,998 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>EatThisOrDie.com — Dinner Roulette</title>
+<!-- ✅ SEO Upgrade Block -->
+<link rel="canonical" href="https://eatthisordie.com">
+
+<!-- Structured Data for Google -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "EatThisOrDie",
+  "url": "https://eatthisordie.com",
+  "description": "Can't decide what to eat? You get 10 chances. Eat what appears or die (symbolically).",
+  "author": {
+    "@type": "Organization",
+    "name": "EatThisOrDie.com"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "EatThisOrDie.com",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://eatthisordie.com/logo.png"
+    }
+  },
+  "potentialAction": {
+    "@type": "SearchAction",
+    "target": "https://eatthisordie.com/?q={search_term_string}",
+    "query-input": "required name=search_term_string"
+  }
+}
+</script>
+
+<!-- Robots & indexing -->
+<meta name="robots" content="index, follow">
+<meta name="rating" content="General">
+
+<!-- Extended Favicons for all devices -->
+<link rel="apple-touch-icon" sizes="180x180" href="favicon.png">
+<link rel="manifest" href="site.webmanifest">
+
+<!-- Additional SEO keywords -->
+<meta name="keywords" content="dinner roulette, eat this or die, can't decide what to eat, random meal generator, funny cooking game, recipe roulette, TheMealDB, dinner ideas, what to eat tonight">
+
+<!-- Favicons -->
+<link rel="icon" type="image/png" href="favicon.png">
+
+<!-- Social preview (Teams, Slack, WhatsApp, etc.) -->
+<meta property="og:title" content="EatThisOrDie — Dinner Roulette">
+<meta property="og:description" content="Can't decide what to eat? You get 10 chances. Eat what appears or die (symbolically).">
+<meta property="og:image" content="preview.png">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://eatthisordie.com">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="EatThisOrDie — Dinner Roulette">
+<meta name="twitter:description" content="Can't decide what to eat? You get 10 chances. Eat what appears or die (symbolically).">
+<meta name="twitter:image" content="preview.png">
+
+  <meta name="description" content="Can't decide what to eat? You get 10 chances. Eat what appears or die (symbolically)." />
+
+<meta name="theme-color" content="#080704">
+<meta name="author" content="EatThisOrDie.com">
+
+
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --bg:#080704;--fg:#e7e7e7;--muted:#9a9a9a;--accent:#e11d2e;--ok:#22c55e;--card:#141414;--border:#222;--shadow:0 10px 30px rgba(0,0,0,.45)
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{margin:0;background:var(--bg);color:var(--fg);font-family:system-ui,Roboto,Inter,sans-serif;line-height:1.45;display:flex;flex-direction:column;min-height:100vh;overflow-x:hidden}
+    .wrap{max-width:1000px;margin:0 auto;padding:24px;flex:1;display:flex;flex-direction:column}
+    header{display:flex;align-items:center;justify-content:space-between}
+    h1{font-size:clamp(26px,4vw,40px);margin:0}
+    .panel{margin:22px 0;padding:18px;border:1px solid var(--border);background:linear-gradient(180deg,rgba(255,255,255,.02),rgba(255,255,255,.00));border-radius:16px;box-shadow:var(--shadow)}
+    .controls {
+  display: flex;
+  align-items: center;
+  gap: 22px; /* 👈 wider gap */
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 10px;
+}
+
+   .btn {
+  appearance: none;
+  border: none;
+  cursor: pointer;
+  padding: 18px 34px; /* 👈 bigger size */
+  border-radius: 12px;
+  font-weight: 900;
+  font-size: 1.15rem; /* 👈 larger text */
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
+  transition: all 0.25s ease;
+  font-family: 'Anton', sans-serif;
+  position: relative;
+  overflow: hidden;
+}
+
+
+/* Red "Next" button */
+.btn-ghost {
+  background: linear-gradient(145deg, #1a1a1a, #0b0b0b);
+  color: var(--fg);
+  border: 1px solid #2a2a2a;
+  box-shadow: inset 0 2px 4px rgba(255,255,255,0.05), 0 0 10px rgba(225,29,46,0.15);
+animation: throb 2.4s ease-in-out infinite;
+
+}
+.btn-ghost:hover {
+  color: #fff;
+  border-color: var(--accent);
+  box-shadow: 0 0 18px rgba(225,29,46,0.6);
+  transform: translateY(-2px) scale(1.03);
+}
+.btn-ghost:active {
+  transform: scale(0.97);
+  box-shadow: 0 0 10px rgba(225,29,46,0.3);
+}
+
+/* Green "Eat this" button */
+.btn-success {
+  background: linear-gradient(145deg, #1a2b1a, #0b1a0b);
+  color: #d7ffd7;
+  border: 1px solid #1e4420;
+  box-shadow: inset 0 2px 4px rgba(255,255,255,0.05), 0 0 10px rgba(34,197,94,0.2);
+animation: throb 2.4s ease-in-out infinite;
+
+}
+.btn-success:hover {
+  background: linear-gradient(145deg, #1e4420, #0c2a0c);
+  color: #fff;
+  box-shadow: 0 0 18px rgba(34,197,94,0.5);
+  transform: translateY(-2px) scale(1.03);
+}
+.btn-success:active {
+  transform: scale(0.97);
+  box-shadow: 0 0 10px rgba(34,197,94,0.25);
+}
+/* Red gradient "Challenge Accepted" button */
+.btn-primary {
+  background: linear-gradient(145deg, #400, #900);
+  color: #fff;
+  border: 1px solid #b00;
+  box-shadow: 0 0 12px rgba(225,29,46,0.4);
+}
+
+.btn-primary:hover {
+  background: linear-gradient(145deg, #600, #a00);
+  box-shadow: 0 0 20px rgba(225,29,46,0.8);
+  transform: translateY(-2px);
+}
+
+
+/* Fast heartbeat when hovered */
+.btn-success:hover {
+  animation: throbFast 0.9s ease-in-out infinite;
+}
+
+.btn-ghost:hover {
+  animation: throbFast 0.9s ease-in-out infinite;
+}
+
+
+/* Disabled look */
+.btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+
+    .shake{animation:shake 0.5s ease}
+    @keyframes shake{
+      10%,90%{transform:translateX(-1px);}20%,80%{transform:translateX(2px);}30%,50%,70%{transform:translateX(-4px);}40%,60%{transform:translateX(4px);}
+    }
+
+    .grid{display:grid;grid-template-columns:1.2fr .8fr;gap:18px}
+    @media (max-width:860px){.grid{grid-template-columns:1fr}}
+    .card{background:var(--card);border:1px solid var(--border);border-radius:16px;overflow:hidden;box-shadow:var(--shadow)}
+    .img-wrap{aspect-ratio:16/10;background:#0f0f0f}
+    .img-wrap img{width:100%;height:100%;object-fit:cover;display:block}
+    .content{padding:16px}
+    .title{font-size:clamp(22px,3vw,30px);margin:0 0 6px;font-weight:900}
+    .meta{font-size:13px;color:var(--muted);margin-bottom:10px}
+    .ingredients{columns:2;gap:18px}
+    @media (max-width:600px){.ingredients{columns:1}}
+    .pill{display:inline-block;border:1px solid var(--border);padding:6px 10px;border-radius:999px;font-size:12px;margin:4px 6px 0 0}
+
+    /* Humor popup styling */
+.popup {
+  position: fixed;
+  inset: 0;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.88);
+  z-index: 1000;
+  animation: fadeIn 0.3s ease forwards;
+}
+
+.popup.show {
+  display: flex;
+}
+
+.popup p {
+  font-size: 2rem; /* larger text */
+  color: #fff;
+  text-align: center;
+  max-width: 700px;
+  padding: 24px;
+  line-height: 1.4;
+  font-family: 'Anton', sans-serif;
+  text-shadow: 0 0 15px rgba(225,29,46,0.5);
+  animation: popupZoom 0.6s ease-out forwards;
+  transform: rotate(-1deg);
+}
+
+
+/* Popup animation */
+@keyframes popupZoom {
+  from {
+    transform: scale(0.8);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+    @keyframes fadeIn{from{opacity:0;}to{opacity:1;}}
+
+    .death {
+  position: fixed;
+  inset: 0;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 999;
+  /* deeper, more intense red gradient */
+  background: radial-gradient(50% 50% at 50% 40%, rgba(255, 0, 0, 0.55), rgba(0, 0, 0, 0.96));
+}
+
+.death.show {
+  display: flex;
+}
+
+.death .box {
+  text-align: center;
+  max-width: 700px;
+  padding: 20px;
+}
+
+.death h2 {
+  font-size: 90px;              /* much larger headline */
+  margin: 0 0 20px;
+  color: #ff1b1b;               /* stronger red tone */
+  text-shadow: 0 0 25px rgba(255, 0, 0, 0.9), 0 0 60px rgba(255, 0, 0, 0.6);
+  letter-spacing: 2px;
+  font-weight: 900;
+}
+
+.death p {
+  font-size: 22px;
+  color: #f2f2f2;
+  text-shadow: 0 0 12px rgba(0, 0, 0, 0.7);
+}
+
+
+    footer{margin:28px 0 16px;color:var(--muted);font-size:12px;text-align:center}
+
+    #intro{position:fixed;inset:0;background:rgba(0,0,0,0.96);display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:20px;z-index:1000}
+    #intro h2{font-size:2.4rem;margin-bottom:1rem;color:#fff}
+    #intro p{max-width:600px;margin:0 auto 1.6rem;color:#ccc;line-height:1.6}
+
+img[src="logo.png"] {
+  filter: brightness(0.9) contrast(1.1);
+  background-color: transparent;
+}
+
+.card, .panel {
+  box-shadow: 0 0 20px rgba(225, 29, 46, 0.15);
+}
+
+h1, h2, h3 {
+  text-shadow: 0 0 8px rgba(225, 29, 46, 0.25);
+}
+
+/* Typography and visual polish */
+h1, h2, h3, button {
+  font-family: 'Anton', sans-serif;
+  letter-spacing: 1px;
+  text-shadow: 0 0 8px rgba(225, 29, 46, 0.25);
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+}
+
+.card, .panel {
+  box-shadow: 0 0 20px rgba(225, 29, 46, 0.15);
+}
+
+#startBtn {
+  animation: pulseRed 2s infinite;
+}
+
+@keyframes pulseRed {
+  0%,100% { box-shadow: 0 0 10px rgba(225,29,46,0.3); }
+  50% { box-shadow: 0 0 25px rgba(225,29,46,0.8); }
+}
+@keyframes throb {
+  0%, 100% {
+    transform: scale(1);
+    filter: brightness(1);
+  }
+  50% {
+    transform: scale(1.04);
+    filter: brightness(1.2);
+  }
+}
+
+@keyframes throbFast {
+  0%, 100% {
+    transform: scale(1);
+    filter: brightness(1);
+  }
+  50% {
+    transform: scale(1.08);
+    filter: brightness(1.3);
+  }
+}
+
+
+
+/* Layout refinements */
+.wrap {
+  justify-content: center;
+}
+
+.card {
+  background: #0d0d0d;
+}
+
+/* Micro-interactions */
+.card:hover {
+  transform: scale(1.02);
+  transition: transform 0.3s ease;
+}
+
+/* ======== EAT THIS OR DIE — Recipe Layout ======== */
+.recipe-layout {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  margin-top: 30px;
+  animation: fadeIn 0.6s ease;
+}
+
+.recipe-layout .top {
+  display: grid;
+  grid-template-columns: 1.3fr 0.7fr;
+  gap: 28px;
+}
+
+.recipe-layout .left,
+.recipe-layout .right,
+.recipe-layout .bottom {
+  background: var(--card);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 18px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.5);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.recipe-layout .left:hover,
+.recipe-layout .right:hover,
+.recipe-layout .bottom:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 35px rgba(225, 29, 46, 0.25);
+}
+
+.recipe-layout .img-wrap {
+  aspect-ratio: 16 / 10;
+  overflow: hidden;
+  border-radius: 14px;
+  margin-bottom: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  position: relative;
+}
+
+.recipe-layout .img-wrap::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.45), transparent 40%);
+}
+
+.recipe-layout .img-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.4s ease;
+}
+
+.recipe-layout .img-wrap:hover img {
+  transform: scale(1.05);
+}
+
+.recipe-layout .content {
+  padding: 8px 6px 20px 6px;
+}
+
+.recipe-layout .title {
+  font-size: clamp(26px, 3vw, 36px);
+  margin: 0 0 4px;
+  font-weight: 900;
+  text-transform: uppercase;
+  color: #fff;
+  letter-spacing: 1px;
+  text-shadow: 0 0 12px rgba(225, 29, 46, 0.6);
+}
+
+.recipe-layout .meta {
+  font-size: 14px;
+  color: var(--muted);
+  margin-bottom: 12px;
+}
+
+.recipe-layout .right h3,
+.recipe-layout .bottom h3 {
+  font-family: 'Anton', sans-serif;
+  font-size: 1.3rem;
+  margin-top: 0;
+  color: var(--accent);
+  letter-spacing: 1px;
+}
+
+.recipe-layout .ingredients {
+  columns: 2;
+  gap: 16px;
+  font-size: 0.95rem;
+  color: var(--fg);
+  line-height: 1.5;
+}
+
+.recipe-layout .bottom {
+  padding: 24px;
+}
+
+.recipe-layout .bottom p {
+  font-size: 1rem;
+  color: #e0e0e0;
+  line-height: 1.7;
+  letter-spacing: 0.3px;
+}
+
+@media (max-width: 860px) {
+  .recipe-layout .top {
+    grid-template-columns: 1fr;
+  }
+  .recipe-layout .ingredients {
+    columns: 1;
+  }
+}
+
+
+footer {
+  margin-top: 40px;
+  color: #888;
+  text-align: center;
+  font-size: 0.9rem;
+}
+footer a { color: var(--accent); }
+footer a:hover { text-decoration: underline; }
+
+/* Life counter styling */
+.lives-container {
+  display: flex;
+  gap: 4px;
+}
+
+.life-icon {
+  width: 22px;
+  height: 22px;
+  background-image: url('skull-icon.png'); /* <-- we'll make or pick one next */
+  background-size: cover;
+  filter: brightness(0.9);
+  opacity: 1;
+  transition: opacity 0.3s ease;
+}
+
+.life-icon.lost {
+  opacity: 0.2;
+  filter: grayscale(100%);
+}
+
+@keyframes bgPulse {
+  0%, 100% { filter: brightness(1); }
+  50% { filter: brightness(1.05); }
+}
+body.panic {
+  background: radial-gradient(circle at center, #1a0000 0%, #080704 80%);
+  animation: bgPulse 2s ease-in-out infinite;
+}
+body.critical {
+  background: radial-gradient(circle at center, #300000 0%, #090707 85%);
+  animation: bgPulse 1.4s ease-in-out infinite;
+}
+body.deathly {
+  background: radial-gradient(circle at center, #500000 0%, #0a0606 90%);
+  animation: bgPulse 1s ease-in-out infinite;
+}
+
+@keyframes redFlash {
+  0%, 100% { box-shadow: 0 0 25px rgba(225, 29, 46, 0.0); }
+  50% { box-shadow: 0 0 50px rgba(225, 29, 46, 0.8); }
+}
+.reaper-mode {
+  animation: redFlash 1.2s ease-in-out infinite;
+  border: 2px solid rgba(225, 29, 46, 0.8) !important;
+}
+/* ======== MOBILE OPTIMIZATIONS ======== */
+
+/* Intro screen spacing & scaling */
+#intro img {
+  max-width: 70%;
+  height: auto;
+}
+
+#intro h2 {
+  font-size: 1.8rem;
+  margin-bottom: 0.8rem;
+}
+
+#intro p {
+  font-size: 1rem;
+  padding: 0 10px;
+}
+
+/* Stack buttons vertically on small screens */
+@media (max-width: 500px) {
+  .controls {
+    flex-direction: column;
+    gap: 16px;
+  }
+}
+
+/* Add breathing room for recipe text */
+@media (max-width: 600px) {
+  .recipe-layout .ingredients {
+    columns: 1;
+    padding: 0 10px;
+  }
+  .recipe-layout .bottom {
+    padding: 16px;
+  }
+}
+
+/* Humor popup scaling for phones */
+@media (max-width: 480px) {
+  .popup p {
+    font-size: 1.4rem;
+    padding: 12px;
+  }
+}
+
+/* Death screen responsive typography */
+@media (max-width: 500px) {
+  .death h2 {
+    font-size: 56px;
+  }
+  .death p {
+    font-size: 18px;
+    padding: 0 12px;
+  }
+}
+
+/* Improve layout flow on narrow devices */
+@media (max-width: 768px) {
+  .wrap {
+    padding: 16px;
+  }
+  .recipe-layout {
+    gap: 20px;
+  }
+  .recipe-layout .top {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Make buttons more thumb-friendly on mobile */
+@media (max-width: 480px) {
+  .btn {
+    width: 100%;
+    padding: 16px;
+    font-size: 1rem;
+  }
+}
+
+/* Fade-out animation for sound button */
+#enableSoundBtn {
+  transition: all 0.4s ease;
+}
+
+
+  </style>
+</head>
+<body>
+  <div id="intro">
+  <img src="logo.png" alt="EatThisOrDie logo" width="180" style="margin-bottom:1rem;">
+  <h2>Welcome to EatThisOrDie</h2>
+  <p>You can’t decide what to eat? You get <strong>10 chances</strong>. Each time you reject a dish, you lose a life. If you say no ten times... you’re dead (not really, but still).</p>
+    <button class="btn btn-primary" id="startBtn">Challenge accepted</button>
+<button class="btn btn-ghost" id="enableSoundBtn" style="margin-top:12px;padding:10px 20px;font-size:0.9rem;">
+  Enable sound
+</button>
+<p style="color:#999;font-size:0.8rem;margin-top:4px;">(recommended)</p>
+
+  </div>
+
+  <div class="wrap">
+    <header style="display:flex;align-items:center;gap:12px;">
+  <img src="logo.png" alt="EatThisOrDie logo" width="48" height="48">
+  <h1 style="margin:0;">EAT THIS OR DIE</h1>
+  <div style="margin-left:auto;display:flex;align-items:center;gap:10px;">
+  <div id="lifeIcons" class="lives-container"></div>
+  <div><strong id="lives">10</strong> lives left</div>
+</div>
+
+</header>
+
+
+    <div class="panel">
+      <div class="controls">
+        <button class="btn btn-success" id="eatBtn" disabled>Eat this</button>
+        <button class="btn btn-ghost" id="nextBtn" disabled>Next</button>
+      </div>
+    </div>
+
+   <section class="recipe-layout" aria-live="polite">
+  <div class="top">
+    <div class="left">
+      <div class="img-wrap">
+        <img id="mealImg" alt="Meal image" />
+      </div>
+      <div class="content">
+        <h2 class="title" id="mealTitle"></h2>
+        <div class="meta" id="mealMeta"></div>
+        <div id="tags"></div>
+      </div>
+    </div>
+
+    <div class="right">
+      <h3>Ingredients</h3>
+      <div class="ingredients" id="ingredients"></div>
+    </div>
+  </div>
+
+  <div class="bottom">
+    <h3>Instructions</h3>
+    <p id="instructions" style="white-space:pre-wrap"></p>
+  </div>
+</section>
+
+
+    <footer>
+  <p>© 2025 <strong>EatThisOrDie.com</strong> — A dark dinner experiment.</p>
+  <p>Powered by <a href="https://www.themealdb.com/api.php" target="_blank" rel="noreferrer noopener">TheMealDB</a></p>
+</footer>
+
+  </div>
+
+  <div class="popup" id="popup"><p id="popupText"></p></div>
+
+<div class="death" id="death">
+  <div class="box">
+    <h2>YOU DIED</h2>
+    <p id="deathMsg">Your indecision killed you. Refresh to try again.</p>
+    <button class="btn btn-ghost" id="shareDeathBtn" style="margin-top:12px;">Share your death</button>
+    <p style="font-size:0.8rem;color:#bbb;margin-top:4px;">(copies a link to your clipboard)</p>
+  </div>
+</div>
+
+
+<!-- Sound effects -->
+<audio id="openingSound" src="opening.mp3"></audio>
+<audio id="nextSound" src="next.mp3"></audio>
+<audio id="diedSound" src="died.mp3"></audio>
+<audio id="heartbeatSound" src="heartbeat.mp3" loop></audio>
+
+
+  <script>
+    const API='https://www.themealdb.com/api/json/v1/1/random.php';
+    const startBtn=document.getElementById('startBtn');
+    const intro=document.getElementById('intro');
+    const nextBtn=document.getElementById('nextBtn');
+    const eatBtn=document.getElementById('eatBtn');
+    const death=document.getElementById('death');
+    const mealImg=document.getElementById('mealImg');
+    const mealTitle=document.getElementById('mealTitle');
+    const mealMeta=document.getElementById('mealMeta');
+    const tagsWrap=document.getElementById('tags');
+    const ingredientsEl=document.getElementById('ingredients');
+    const instructionsEl=document.getElementById('instructions');
+    const livesEl=document.getElementById('lives');
+    const popup=document.getElementById('popup');
+    const popupText=document.getElementById('popupText');
+
+const lifeIconsContainer = document.getElementById('lifeIcons');
+
+// Render initial skulls
+function renderLivesIcons() {
+  lifeIconsContainer.innerHTML = '';
+  for (let i = 0; i < 10; i++) {
+    const icon = document.createElement('div');
+    icon.classList.add('life-icon');
+    if (i >= lives) icon.classList.add('lost');
+    lifeIconsContainer.appendChild(icon);
+  }
+}
+
+
+// Sound elements
+const openingSound = document.getElementById('openingSound');
+const nextSound = document.getElementById('nextSound');
+const diedSound = document.getElementById('diedSound');
+const heartbeatSound = document.getElementById('heartbeatSound');
+const enableSoundBtn = document.getElementById('enableSoundBtn');
+
+function pauseHeartbeat() {
+  if (!heartbeatSound.paused) heartbeatSound.pause();
+}
+
+function resumeHeartbeat() {
+  if (heartbeatSound.paused && lives > 0) {
+    heartbeatSound.play().catch(() => {});
+  }
+}
+
+// Pause heartbeat when other effects play
+openingSound.addEventListener('play', pauseHeartbeat);
+nextSound.addEventListener('play', pauseHeartbeat);
+diedSound.addEventListener('play', pauseHeartbeat);
+
+// Resume heartbeat when those sounds end
+openingSound.addEventListener('ended', resumeHeartbeat);
+nextSound.addEventListener('ended', resumeHeartbeat);
+
+function updateHeartbeatRate() {
+  // As lives go down, heartbeat speeds up
+  // Default playbackRate is 1.0 (normal speed)
+  const speed = 1 + (10 - lives) * 0.05; // +5% speed per lost life
+  heartbeatSound.playbackRate = speed;
+
+  // Optional: slightly raise volume as stress increases
+  heartbeatSound.volume = Math.min(0.7 + (10 - lives) * 0.03, 1.0);
+}
+
+
+
+    let lives = 10;
+renderLivesIcons();
+
+
+    const funnyLines=[
+      "Maybe you’ll like the next one better... or not.",
+      "Gordon Ramsay would be disappointed.",
+      "The fridge sighs in despair.",
+      "Still not good enough? You’re brave.",
+      "You’re one rejection closer to death.",
+      "That dish had feelings, you know.",
+      "It’s okay, nobody ever knows what they want anyway.",
+"Even the microwave’s judging you now.",
+  "A chef somewhere just shed a single tear.",
+  "You’re not hungry, you’re dramatic.",
+  "Another meal dies for your indecision.",
+  "At this point, just drink ketchup.",
+  "The gods of dinner are losing patience.",
+  "You’ve officially unlocked starvation mode.",
+  "If this was The Hunger Games… you'd be toast.",
+  "Maybe air is your favorite dish after all.",
+  "Congratulations, you've disappointed your stomach again."
+    ];
+
+const nextLabels = [
+  "I'd rather die.",
+  "No, kill me already.",
+  "Yuck.",
+  "Please, shoot me!",
+  "Disgusting!",
+  "I'd rather starve.",
+  "Are you trying to kill me?",
+  "That’s not even food!",
+  "I'd feed that to my enemies.",
+  "This looks cursed.",
+  "My stomach just screamed.",
+  "Hard pass.",
+  "Send help.",
+  "Even my dog said no.",
+  "I’m losing faith in humanity.",
+  "What in the culinary hell is that?",
+  "Absolutely not.",
+  "Please... make it stop.",
+  "I’d rather lick a battery.",
+  "Even Gordon Ramsay would quit."
+];
+
+
+function setLives(v) {
+  lives = v;
+  livesEl.textContent = v;
+  renderLivesIcons();
+  updateHeartbeatRate();
+
+  // background mood shift
+  document.body.classList.remove('panic', 'critical', 'deathly');
+  if (lives <= 7 && lives > 4) document.body.classList.add('panic');
+  else if (lives <= 4 && lives > 1) document.body.classList.add('critical');
+  else if (lives === 1) document.body.classList.add('deathly');
+
+  if (lives <= 0) {
+    gameOver();
+  }
+}
+
+
+
+
+    async function fetchMeal(){
+      try{
+        const res=await fetch(API,{cache:'no-store'});
+        const data=await res.json();
+        const meal=data.meals[0];
+        const cat=meal.strCategory?.toLowerCase()||'';
+        if(cat.includes('dessert')||cat.includes('cake')||cat.includes('sweet')||cat.includes('drink')){
+          return fetchMeal(); // skip desserts
+        }
+        renderMeal(meal);
+      }catch{
+        renderMeal({strMeal:'Mystery Soup',strMealThumb:'https://picsum.photos/800/500?random',strCategory:'Unknown',strArea:'Nowhere',strInstructions:'Boil water. Add mystery. Survive.'});
+      }
+    }
+
+    function renderMeal(m){
+      mealImg.src=m.strMealThumb||'';
+      mealTitle.textContent=m.strMeal;
+// Dramatic reveal for final meal
+if (lives === 1) {
+  mealTitle.textContent = "🔥 THE REAPER’S CHOICE 🔥";
+  document.querySelector('.recipe-layout .left').classList.add('reaper-mode');
+} else {
+  document.querySelector('.recipe-layout .left').classList.remove('reaper-mode');
+}
+
+      mealMeta.textContent=[m.strCategory,m.strArea].filter(Boolean).join(' • ');
+      tagsWrap.innerHTML='';ingredientsEl.innerHTML='';
+      for(let i=1;i<=20;i++){const ing=m['strIngredient'+i];const mea=m['strMeasure'+i];if(ing){const d=document.createElement('div');d.textContent=`${ing} — ${mea||''}`;ingredientsEl.appendChild(d);}}
+      instructionsEl.textContent=(m.strInstructions||'').trim();
+      eatBtn.onclick = () => {
+  window.open(m.strSource || m.strYoutube || '#', '_blank');
+};
+eatBtn.disabled = false;
+nextBtn.disabled = false;
+resumeHeartbeat();
+
+    }
+
+    function gameOver() {
+  diedSound.currentTime = 0;
+  diedSound.play();
+  nextBtn.disabled = true;
+  eatBtn.disabled = true;
+  death.classList.add('show');
+}
+
+const shareDeathBtn = document.getElementById('shareDeathBtn');
+const deathMsg = document.getElementById('deathMsg');
+
+shareDeathBtn.addEventListener('click', async () => {
+  const text = `I died on EatThisOrDie.com after rejecting ${10 - lives} meals. 😵‍💫🍽️`;
+  const shareUrl = `https://eatthisordie.com/?death=${encodeURIComponent(text)}`;
+
+  try {
+    await navigator.clipboard.writeText(shareUrl);
+    shareDeathBtn.textContent = "Link copied!";
+    setTimeout(() => shareDeathBtn.textContent = "Share your death", 2500);
+  } catch (err) {
+    alert("Couldn't copy link — try manually!");
+  }
+});
+
+
+    function showPopup(text){
+      popupText.textContent=text;
+      popup.classList.add('show');
+      setTimeout(()=>{popup.classList.remove('show');},2800);
+    }
+
+nextBtn.addEventListener('click', () => {
+  nextSound.currentTime = 0;
+  nextSound.play();
+
+  document.body.classList.add('shake');
+ 
+
+  setTimeout(() => document.body.classList.remove('shake'), 500);
+
+  // Decrease life first
+  setLives(lives - 1);
+
+  // If lives are now 0 (player dies), skip humor and new meal
+  if (lives <= 0) {
+    nextBtn.disabled = true;
+    eatBtn.disabled = true;
+    return; // stop here — no popup or next recipe
+  }
+
+  // Otherwise, continue as normal
+  const randomFunny = funnyLines[Math.floor(Math.random() * funnyLines.length)];
+  showPopup(randomFunny);
+
+  nextBtn.disabled = true;
+  eatBtn.disabled = true;
+
+  setTimeout(() => {
+    fetchMeal();
+    nextBtn.disabled = false;
+    eatBtn.disabled = false;
+  }, 3000);
+
+  nextBtn.textContent = nextLabels[Math.floor(Math.random() * nextLabels.length)];
+});
+
+
+startBtn.addEventListener('click', () => {
+  intro.style.display = 'none';
+
+  // Start heartbeat sound softly
+  try {
+    heartbeatSound.volume = 0.65;
+    heartbeatSound.play().catch(() => {
+      console.warn('Heartbeat autoplay blocked until user enables sound.');
+    });
+  } catch (err) {
+    console.warn('Error starting heartbeat sound:', err);
+  }
+
+  // Safely play opening sound
+  if (openingSound) {
+    try {
+      openingSound.currentTime = 0;
+      openingSound.play().catch(err => {
+        console.warn('Opening sound could not play:', err);
+      });
+    } catch (err) {
+      console.warn('Error playing opening sound:', err);
+    }
+  }
+heartbeatSound.playbackRate = 1.0;
+updateHeartbeatRate();
+
+
+  // Always continue even if sound fails
+  fetchMeal();
+});
+
+enableSoundBtn.addEventListener('click', () => {
+  try {
+    openingSound.volume = 0.8;
+    nextSound.volume = 0.8;
+    diedSound.volume = 0.9;
+    heartbeatSound.volume = 0.35;
+    heartbeatSound.play();
+    enableSoundBtn.textContent = "Sound enabled 🔊";
+    enableSoundBtn.disabled = true;
+    enableSoundBtn.style.opacity = "0.6";
+  } catch (err) {
+    console.warn('Error enabling sound:', err);
+  }
+});
+
+
+
+  </script>
+</body>
+</html>
