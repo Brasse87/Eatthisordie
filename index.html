@@ -634,6 +634,95 @@ body.deathly {
 #intro .btn {
   max-width: 90%;
 }
+/* === MOBILE RESPONSIVENESS FIX === */
+
+/* Stack layout and make everything fit nicely on small screens */
+@media (max-width: 860px) {
+  .recipe-layout {
+    flex-direction: column;
+    gap: 20px;
+    margin-top: 20px;
+  }
+
+  .recipe-layout .top {
+    display: grid;
+    grid-template-columns: 1fr; /* stack image/content above ingredients */
+    gap: 16px;
+  }
+
+  .recipe-layout .left,
+  .recipe-layout .right,
+  .recipe-layout .bottom {
+    width: 100%;
+    border-radius: 14px;
+  }
+
+  .recipe-layout .img-wrap {
+    aspect-ratio: 16/9;
+    margin-bottom: 10px;
+  }
+
+  .ingredients {
+    columns: 1 !important;
+    font-size: 1rem;
+    padding: 0 10px;
+  }
+
+  #instructions {
+    font-size: 1rem;
+    padding: 0 10px;
+    overflow-wrap: anywhere;
+  }
+
+  .controls {
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .btn {
+    width: 100%;
+    padding: 14px 18px;
+    font-size: 1rem;
+  }
+
+  header h1 {
+    font-size: 1.6rem;
+  }
+}
+
+/* Optimize intro screen on small phones */
+@media (max-width: 500px) {
+  #intro h2 {
+    font-size: 1.6rem;
+  }
+  #intro p {
+    font-size: 1rem;
+    padding: 0 10px;
+  }
+  #intro .btn {
+    width: 100%;
+    font-size: 1rem;
+    min-height: 54px;
+  }
+}
+
+/* Prevent overflow text anywhere */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+img,
+video {
+  max-width: 100%;
+  height: auto;
+}
+
+.wrap {
+  padding: 16px;
+  width: 100%;
+}
 
 
   </style>
@@ -1018,3 +1107,4 @@ enableSoundBtn.addEventListener('click', () => {
 </body>
 
 </html>
+
