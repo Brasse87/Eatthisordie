@@ -724,6 +724,96 @@ video {
   width: 100%;
 }
 
+/* --- Fix intro screen mobile scaling --- */
+#intro {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  overflow-y: auto; /* allow slight scroll if needed */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  background: rgba(0,0,0,0.96);
+  padding: 5vw;
+  box-sizing: border-box;
+  z-index: 1000;
+}
+
+
+/* --- Fix cropped logo on intro screen --- */
+#intro img {
+  max-width: 70%;
+  height: auto;
+  margin-bottom: 1rem;
+  margin-top: 5vh; /* adds breathing space from top */
+}
+
+@media (max-height: 700px) {
+  #intro img {
+    max-width: 60%;
+    margin-top: 8vh; /* more space for short screens */
+  }
+}
+
+#intro h2 {
+  font-size: clamp(1.4rem, 5vw, 2.2rem);
+  margin-bottom: 1rem;
+}
+
+#intro p {
+  font-size: clamp(0.9rem, 4vw, 1.1rem);
+  line-height: 1.6;
+  color: #ccc;
+  margin-bottom: 1.4rem;
+}
+
+#intro .btn {
+  width: 100%;
+  max-width: 320px;
+  font-size: 1.1rem;
+  padding: 14px 24px;
+  margin: 6px 0;
+}
+
+/* --- Fix header layout on mobile --- */
+header {
+  flex-wrap: wrap;
+  gap: 12px;
+  justify-content: center;
+  text-align: center;
+}
+
+header img {
+  width: 48px;
+  height: 48px;
+}
+
+header h1 {
+  font-size: clamp(1.4rem, 5vw, 2.2rem);
+  margin: 0;
+}
+
+header div {
+  font-size: 0.95rem;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+@media (max-width: 600px) {
+  header {
+    flex-direction: column;
+    align-items: center;
+  }
+  header div {
+    flex-direction: column;
+    font-size: 0.9rem;
+  }
+}
+
 
   </style>
 </head>
@@ -741,7 +831,8 @@ video {
   </div>
 
   <div class="wrap">
-    <header style="display:flex;align-items:center;gap:12px;">
+    <header>
+
   <img src="logo.png" alt="EatThisOrDie logo" width="48" height="48">
   <h1 style="margin:0;">EAT THIS OR DIE</h1>
   <div style="margin-left:auto;display:flex;align-items:center;gap:10px;">
@@ -1105,6 +1196,4 @@ enableSoundBtn.addEventListener('click', () => {
 
   </script>
 </body>
-
 </html>
-
