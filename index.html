@@ -835,6 +835,53 @@ header h1 {
     margin-top: 6px;
   }
 }
+/* === PULSATING LIVES TEXT === */
+#lives {
+  display: inline-block;
+  font-weight: 900;
+  color: #22c55e; /* grönt när trygg */
+  transition: all 0.3s ease;
+  animation: calmPulse 3s ease-in-out infinite;
+}
+
+/* Standard långsam puls */
+@keyframes calmPulse {
+  0%, 100% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.05); opacity: 0.85; }
+}
+
+/* Färger för stressnivåer */
+body.panic #lives {
+  color: #facc15; /* gul */
+  animation: mediumPulse 2s ease-in-out infinite;
+}
+
+body.critical #lives {
+  color: #e11d2e; /* röd */
+  animation: fastPulse 1.3s ease-in-out infinite;
+}
+
+body.deathly #lives {
+  color: #ff0000;
+  animation: deathPulse 0.8s ease-in-out infinite;
+  text-shadow: 0 0 12px rgba(255,0,0,0.8);
+}
+
+/* Pulsanimationer för olika nivåer */
+@keyframes mediumPulse {
+  0%, 100% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.08); opacity: 0.75; }
+}
+
+@keyframes fastPulse {
+  0%, 100% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.15); opacity: 0.7; }
+}
+
+@keyframes deathPulse {
+  0%, 100% { transform: scale(1); opacity: 1; text-shadow: 0 0 8px rgba(255,0,0,0.5); }
+  50% { transform: scale(1.2); opacity: 0.6; text-shadow: 0 0 20px rgba(255,0,0,0.9); }
+}
 
 
   </style>
@@ -1202,4 +1249,5 @@ enableSoundBtn.addEventListener('click', () => {
 
   </script>
 </body>
+
 </html>
